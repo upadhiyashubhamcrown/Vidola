@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Professional online photo and video editor with advanced editing tools. Free and easy to use!">
+    <meta name="keywords" content="photo editor, video editor, image editing, online editor, free editor">
+    <meta name="author" content="PhotoVideoEdit Pro">
+    <title>PhotoVideoEdit Pro | Free Online Photo & Video Editor</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-YOUR_AD_CLIENT_ID" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary: #4361ee;
+            --secondary: #3f37c9;
+            --accent: #4895ef;
+            --dark: #1e1e2c;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --success: #4cc9f0;
+            --warning: #f72585;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e1e2c, #2d2d44);
+            color: var(--light);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        header {
+            background: rgba(30, 30, 44, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .logo i {
+            color: var(--success);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .main-container {
+            display: grid;
+            grid-template-columns: 250px 1fr 250px;
+            gap: 20px;
+            padding: 2rem;
+            max-width: 1800px;
+            margin: 0 auto;
+        }
+        
+        .panel {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 1.5rem;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow);
+            height: fit-content;
+        }
+        
+        .panel-title {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+        
+        .tool {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .tool:hover {
+            background: rgba(72, 149, 239, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .tool i {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+        }
+        
+        .editor-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .tab-btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        
+        .tab-btn.active {
+            background: var(--primary);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .action-btn {
+            padding: 0.7rem 1.5rem;
+            border: none;
+            border-radius: 30px;
+            background: var(--primary);
+            color: white;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .action-btn.secondary {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .action-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+        
+        .editor-area {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 12px;
+            height: 600px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .editor-placeholder {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+        }
+        
+        .editor-placeholder i {
+            font-size: 5rem;
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+        }
+        
+        .editor-placeholder h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .editor-placeholder p {
+            color: var(--gray);
+            margin-bottom: 2rem;
+        }
+        
+        .upload-btn {
+            padding: 1rem 2.5rem;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .upload-btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .editor-preview {
+            max-width: 100%;
+            max-height: 500px;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .adjustment-panel {
+            margin-top: 20px;
+        }
+        
+        .adjustment {
+            margin-bottom: 1.5rem;
+        }
+        
+        .adjustment label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--light);
+            font-weight: 500;
+        }
+        
+        .slider-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .slider {
+            flex: 1;
+            height: 6px;
+            -webkit-appearance: none;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 3px;
+            outline: none;
+        }
+        
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: var(--accent);
+            cursor: pointer;
+        }
+        
+        .slider-value {
+            width: 40px;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 0.3rem;
+            border-radius: 4px;
+        }
+        
+        .presets-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+        
+        .preset {
+            height: 80px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+        
+        .preset:hover {
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+        
+        .preset-1 { background: linear-gradient(45deg, #ff9a9e, #fad0c4); }
+        .preset-2 { background: linear-gradient(45deg, #a1c4fd, #c2e9fb); }
+        .preset-3 { background: linear-gradient(45deg, #ffecd2, #fcb69f); }
+        .preset-4 { background: linear-gradient(45deg, #84fab0, #8fd3f4); }
+        .preset-5 { background: linear-gradient(45deg, #d4fc79, #96e6a1); }
+        .preset-6 { background: linear-gradient(45deg, #a6c0fe, #f68084); }
+        
+        .ad-container {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .ad-label {
+            font-size: 0.8rem;
+            color: var(--gray);
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+        
+        .ad-placeholder {
+            height: 250px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 8px;
+            color: var(--gray);
+        }
+        
+        .ad-placeholder i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        footer {
+            background: rgba(30, 30, 44, 0.9);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: var(--accent);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.5rem;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 1200px) {
+            .main-container {
+                grid-template-columns: 200px 1fr;
+            }
+            .right-panel {
+                grid-column: span 2;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 20px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .main-container {
+                grid-template-columns: 1fr;
+                padding: 1rem;
+            }
+            .left-panel, .right-panel {
+                grid-column: span 1;
+            }
+            .right-panel {
+                grid-template-columns: 1fr;
+            }
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            .editor-header {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            .tab-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            .action-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+            .tools-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .tools-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .presets-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .editor-area {
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <i class="fas fa-camera-retro"></i>
+                <span>PhotoVideoEdit Pro</span>
+            </div>
+            <div class="nav-links">
+                <a href="#"><i class="fas fa-home"></i> Home</a>
+                <a href="#"><i class="fas fa-tools"></i> Tools</a>
+                <a href="#"><i class="fas fa-graduation-cap"></i> Tutorials</a>
+                <a href="#"><i class="fas fa-dollar-sign"></i> Premium</a>
+                <a href="#"><i class="fas fa-user"></i> Account</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Main Editor Container -->
+    <div class="main-container">
+        <!-- Left Panel - Tools -->
+        <div class="panel left-panel">
+            <h2 class="panel-title"><i class="fas fa-sliders-h"></i> Editing Tools</h2>
+            <div class="tools-grid">
+                <div class="tool">
+                    <i class="fas fa-crop-alt"></i>
+                    <p>Crop</p>
+                </div>
+                <div class="tool">
+                    <i class="fas fa-adjust"></i>
+                    <p>Adjust</p>
+                </div>
+                <div class="tool">
+                    <i class="fas fa-sun"></i>
+                    <p>Lighting</p>
+                </div>
+                <div class="tool">
+                    <i class="fas fa-paint-brush"></i>
+                    <p>Brush</p>
+                </div>
+                <div class="tool">
+                    <i class="fas fa-text-height"></i>
+                    <p>Text</p>
+                </div>
+                <div class="tool">
+                    <i class="fas fa-sticky-note"></i>
+                    <p>Stickers</p>
+                </div>
+                <div class="tool">
+                    <i class="fas fa-border-style"></i>
+                    <p>Frames</p>
+                </div>
+                <div class="tool">
+                    <i class="fas fa-magic"></i>
+                    <p>AI Enhance</p>
+                </div>
+            </div>
+            
+            <div class="adjustment-panel">
+                <h2 class="panel-title"><i class="fas fa-sliders-h"></i> Adjustments</h2>
+                <div class="adjustment">
+                    <label>Brightness</label>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="200" value="100" class="slider" id="brightness">
+                        <div class="slider-value" id="brightness-value">100%</div>
+                    </div>
+                </div>
+                <div class="adjustment">
+                    <label>Contrast</label>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="200" value="100" class="slider" id="contrast">
+                        <div class="slider-value" id="contrast-value">100%</div>
+                    </div>
+                </div>
+                <div class="adjustment">
+                    <label>Saturation</label>
+                    <div class="slider-container">
+                        <input type="range" min="0" max="200" value="100" class="slider" id="saturation">
+                        <div class="slider-value" id="saturation-value">100%</div>
+                    </div>
+                </div>
+                <div class="adjustment">
+                    <label>Temperature</label>
+                    <div class="slider-container">
+                        <input type="range" min="-100" max="100" value="0" class="slider" id="temperature">
+                        <div class="slider-value" id="temperature-value">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Center Panel - Editor -->
+        <div class="editor-container">
+            <div class="editor-header">
+                <div class="tab-buttons">
+                    <button class="tab-btn active">Photo Editor</button>
+                    <button class="tab-btn">Video Editor</button>
+                    <button class="tab-btn">Collage Maker</button>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn secondary" id="importBtn"><i class="fas fa-download"></i> Import</button>
+                    <button class="action-btn" id="exportBtn"><i class="fas fa-save"></i> Export</button>
+                    <button class="action-btn secondary" id="resetBtn"><i class="fas fa-redo"></i> Reset</button>
+                </div>
+            </div>
+            
+            <div class="editor-area">
+                <div class="editor-placeholder" id="placeholder">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h2>Drag & Drop Your Media Here</h2>
+                    <p>Upload photos or videos to start editing. Supports JPG, PNG, GIF, MP4, and MOV formats.</p>
+                    <button class="upload-btn" id="uploadBtn"><i class="fas fa-upload"></i> Browse Files</button>
+                </div>
+                <canvas id="editor-canvas" class="editor-preview"></canvas>
+            </div>
+        </div>
+        
+        <!-- Right Panel - Presets & Ads -->
+        <div class="panel right-panel">
+            <h2 class="panel-title"><i class="fas fa-palette"></i> Presets & Filters</h2>
+            <div class="presets-grid">
+                <div class="preset preset-1" title="Warm Vintage" data-filter="warm"></div>
+                <div class="preset preset-2" title="Cool Breeze" data-filter="cool"></div>
+                <div class="preset preset-3" title="Golden Hour" data-filter="golden"></div>
+                <div class="preset preset-4" title="Fresh Green" data-filter="green"></div>
+                <div class="preset preset-5" title="Summer Glow" data-filter="summer"></div>
+                <div class="preset preset-6" title="Romantic Pink" data-filter="pink"></div>
+            </div>
+            
+            <!-- Ad Container 1 -->
+            <div class="ad-container">
+                <div class="ad-label">Advertisement</div>
+                <div class="ad-placeholder">
+                    <i class="fab fa-google"></i>
+                    <p>Google AdSense</p>
+                    <small>Ad Unit ID: EDITOR_SIDEBAR_1</small>
+                </div>
+            </div>
+            
+            <h2 class="panel-title"><i class="fas fa-history"></i> Recent Edits</h2>
+            <p>No recent edits. Start editing to see your history here.</p>
+            
+            <!-- Ad Container 2 -->
+            <div class="ad-container">
+                <div class="ad-label">Advertisement</div>
+                <div class="ad-placeholder">
+                    <i class="fab fa-google"></i>
+                    <p>Google AdSense</p>
+    <small>Ad Unit ID: EDITOR_SIDEBAR_2</small>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>PhotoVideoEdit Pro</h3>
+                <p>Professional online photo and video editing tools for creators. Free to use with premium options available.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Home</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Features</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Pricing</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Tutorials</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Blog</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <ul class="footer-links">
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Terms of Service</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Privacy Policy</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> Cookie Policy</a></li>
+                    <li><a href="#"><i class="fas fa-angle-right"></i> GDPR Compliance</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 PhotoVideoEdit Pro. All rights reserved. Designed with <i class="fas fa-heart" style="color:var(--warning)"></i> for creators.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // DOM Elements
+        const canvas = document.getElementById('editor-canvas');
+        const ctx = canvas.getContext('2d');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const placeholder = document.getElementById('placeholder');
+        const brightnessSlider = document.getElementById('brightness');
+        const contrastSlider = document.getElementById('contrast');
+        const saturationSlider = document.getElementById('saturation');
+        const temperatureSlider = document.getElementById('temperature');
+        const brightnessValue = document.getElementById('brightness-value');
+        const contrastValue = document.getElementById('contrast-value');
+        const saturationValue = document.getElementById('saturation-value');
+        const temperatureValue = document.getElementById('temperature-value');
+        const importBtn = document.getElementById('importBtn');
+        const exportBtn = document.getElementById('exportBtn');
+        const resetBtn = document.getElementById('resetBtn');
+        
+        // Initial settings
+        let currentImage = null;
+        let originalImage = null;
+        
+        // Initialize canvas
+        function initCanvas() {
+            canvas.width = 800;
+            canvas.height = 500;
+            canvas.style.display = 'block';
+            
+            // Draw placeholder on canvas
+            ctx.fillStyle = '#2d2d44';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            ctx.font = '24px Arial';
+            ctx.fillStyle = '#4895ef';
+            ctx.textAlign = 'center';
+            ctx.fillText('Upload an image to start editing', canvas.width/2, canvas.height/2 - 20);
+            
+            ctx.font = '16px Arial';
+            ctx.fillStyle = '#6c757d';
+            ctx.fillText('Supports JPG, PNG, GIF formats', canvas.width/2, canvas.height/2 + 20);
+        }
+        
+        // Draw image on canvas
+        function drawImage(img) {
+            canvas.width = img.width;
+            canvas.height = img.height;
+            ctx.drawImage(img, 0, 0);
+            originalImage = new Image();
+            originalImage.src = canvas.toDataURL('image/png');
+        }
+        
+        // Apply filters
+        function applyFilters() {
+            if (!currentImage) return;
+            
+            // Reset canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.drawImage(currentImage, 0, 0);
+            
+            // Get image data
+            const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+            const data = imageData.data;
+            
+            // Get slider values
+            const brightness = parseInt(brightnessSlider.value) / 100;
+            const contrast = parseInt(contrastSlider.value) / 100;
+            const saturation = parseInt(saturationSlider.value) / 100;
+            const temperature = parseInt(temperatureSlider.value);
+            
+            // Apply filters
+            for (let i = 0; i < data.length; i += 4) {
+                // Brightness
+                data[i] = data[i] * brightness;
+                data[i + 1] = data[i + 1] * brightness;
+                data[i + 2] = data[i + 2] * brightness;
+                
+                // Contrast
+                const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+                data[i] = avg + (data[i] - avg) * contrast;
+                data[i + 1] = avg + (data[i + 1] - avg) * contrast;
+                data[i + 2] = avg + (data[i + 2] - avg) * contrast;
+                
+                // Saturation
+                const gray = 0.2989 * data[i] + 0.5870 * data[i + 1] + 0.1140 * data[i + 2];
+                data[i] = gray + (data[i] - gray) * saturation;
+                data[i + 1] = gray + (data[i + 1] - gray) * saturation;
+                data[i + 2] = gray + (data[i + 2] - gray) * saturation;
+                
+                // Temperature (warm/cool)
+                if (temperature > 0) {
+                    // Add warm (red/orange)
+                    data[i] = data[i] + (temperature * 2.55);
+                    data[i + 1] = data[i + 1] + (temperature * 1.5);
+                } else if (temperature < 0) {
+                    // Add cool (blue)
+                    data[i + 2] = data[i + 2] - (temperature * 2.55);
+                }
+       // Clamp values to 0-255
+                data[i] = Math.max(0, Math.min(255, data[i]));
+                data[i + 1] = Math.max(0, Math.min(255, data[i + 1]));
+                data[i + 2] = Math.max(0, Math.min(255, data[i + 2]));
+            }
+            
+            // Put modified data back
+            ctx.putImageData(imageData, 0, 0);
+        }
+        
+        // Upload button functionality
+        uploadBtn.addEventListener('click', function() {
+            // Simulate file upload
+            placeholder.innerHTML = '<i class="fas fa-spinner fa-spin"></i><h2>Processing your image...</h2>';
+            
+            setTimeout(() => {
+                // Create a sample image
+                const img = new Image();
+                img.onload = function() {
+                    currentImage = img;
+                    drawImage(img);
+                    placeholder.style.display = 'none';
+                    
+                    // Show success message
+                    const successMsg = document.createElement('div');
+                    successMsg.innerHTML = '<p style="color: var(--success); margin-top: 20px;"><i class="fas fa-check-circle"></i> Image successfully uploaded!</p>';
+                    successMsg.style.position = 'absolute';
+                    successMsg.style.bottom = '20px';
+                    document.querySelector('.editor-area').appendChild(successMsg);
+                    
+                    // Remove message after 3 seconds
+                    setTimeout(() => {
+                        successMsg.remove();
+                    }, 3000);
+                };
+                
+                // Create a sample image using canvas
+                const tempCanvas = document.createElement('canvas');
+                const tempCtx = tempCanvas.getContext('2d');
+                tempCanvas.width = 800;
+                tempCanvas.height = 500;
+                
+                // Draw background
+                tempCtx.fillStyle = '#1e1e2c';
+                tempCtx.fillRect(0, 0, tempCanvas.width, tempCanvas.height);
+                
+                // Draw mountains
+                tempCtx.fillStyle = '#2d2d44';
+                tempCtx.beginPath();
+                tempCtx.moveTo(0, 500);
+                tempCtx.lineTo(0, 300);
+                tempCtx.lineTo(200, 200);
+                tempCtx.lineTo(400, 350);
+                tempCtx.lineTo(600, 150);
+                tempCtx.lineTo(800, 400);
+                tempCtx.lineTo(800, 500);
+                tempCtx.closePath();
+                tempCtx.fill();
+                
+                // Draw sun
+                tempCtx.fillStyle = '#f72585';
+                tempCtx.beginPath();
+                tempCtx.arc(650, 100, 50, 0, Math.PI * 2);
+                tempCtx.fill();
+                
+                // Draw text
+                tempCtx.font = 'bold 48px Arial';
+                tempCtx.fillStyle = '#4895ef';
+                tempCtx.textAlign = 'center';
+                tempCtx.fillText('Sample Image', 400, 280);
+                
+                tempCtx.font = '24px Arial';
+                tempCtx.fillStyle = '#6c757d';
+                tempCtx.fillText('Upload your own image to edit', 400, 330);
+                
+                // Set the image source to the canvas data URL
+                img.src = tempCanvas.toDataURL('image/png');
+            }, 1500);
+        });
+        
+        // Slider event listeners
+        brightnessSlider.addEventListener('input', function() {
+            brightnessValue.textContent = this.value + '%';
+            applyFilters();
+        });
+        
+        contrastSlider.addEventListener('input', function() {
+            contrastValue.textContent = this.value + '%';
+            applyFilters();
+        });
+        
+        saturationSlider.addEventListener('input', function() {
+            saturationValue.textContent = this.value + '%';
+            applyFilters();
+        });
+        
+        temperatureSlider.addEventListener('input', function() {
+            temperatureValue.textContent = this.value;
+            applyFilters();
+        });
+               // Preset filters
+        const presets = document.querySelectorAll('.preset');
+        presets.forEach(preset => {
+            preset.addEventListener('click', function() {
+                // Visual feedback
+                presets.forEach(p => p.style.borderColor = 'transparent');
+                this.style.borderColor = 'var(--accent)';
+                
+                // Apply preset
+                const filter = this.getAttribute('data-filter');
+                switch(filter) {
+                    case 'warm':
+                        brightnessSlider.value = 120;
+                        saturationSlider.value = 130;
+                        temperatureSlider.value = 30;
+                        break;
+                    case 'cool':
+                        brightnessSlider.value = 110;
+                        saturationSlider.value = 120;
+                        temperatureSlider.value = -30;
+                        break;
+                    case 'golden':
+                        brightnessSlider.value = 130;
+                        contrastSlider.value = 120;
+                        saturationSlider.value = 110;
+                        temperatureSlider.value = 20;
+                        break;
+                    case 'green':
+                        saturationSlider.value = 150;
+                        temperatureSlider.value = -10;
+                        break;
+                    case 'summer':
+                        brightnessSlider.value = 140;
+                        saturationSlider.value = 140;
+                        temperatureSlider.value = 20;
+                        break;
+                    case 'pink':
+                        saturationSlider.value = 160;
+                        temperatureSlider.value = 40;
+                        break;
+                }
+                
+                // Update values
+                brightnessValue.textContent = brightnessSlider.value + '%';
+                contrastValue.textContent = contrastSlider.value + '%';
+                saturationValue.textContent = saturationSlider.value + '%';
+                temperatureValue.textContent = temperatureSlider.value;
+                
+                applyFilters();
+            });
+        });
+        
+        // Action buttons
+        resetBtn.addEventListener('click', function() {
+            if (currentImage) {
+                drawImage(currentImage);
+                
+                // Reset sliders
+                brightnessSlider.value = 100;
+                contrastSlider.value = 100;
+                saturationSlider.value = 100;
+                temperatureSlider.value = 0;
+                
+                brightnessValue.textContent = '100%';
+                contrastValue.textContent = '100%';
+                saturationValue.textContent = '100%';
+                temperatureValue.textContent = '0';
+                
+                // Reset presets
+                presets.forEach(p => p.style.borderColor = 'transparent');
+            }
+        });
+        
+        exportBtn.addEventListener('click', function() {
+            if (currentImage) {
+                const link = document.createElement('a');
+                link.download = 'edited-image.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            }
+        });
+        
+        importBtn.addEventListener('click', function() {
+            uploadBtn.click();
+        });
+        
+        // Initialize
+        initCanvas();
+        
+        // Tab switching functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                this.classList.add('active');
+            });
+        });
+        
+        // Tool selection
+        const tools = document.querySelectorAll('.tool');
+        tools.forEach(tool => {
+            tool.addEventListener('click', function() {
+                tools.forEach(t => t.style.background = 'rgba(255, 255, 255, 0.08)');
+                this.style.background = 'rgba(72, 149, 239, 0.3)';
+            });
+        });
+    </script>
+</body>
+</html>
+        
