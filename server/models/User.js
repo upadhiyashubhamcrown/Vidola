@@ -63,6 +63,20 @@ const userSchema = new mongoose.Schema({
   isVerified: {
     type: Boolean,
     default: false
+  },
+  subscription: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Subscription',
+    default: null
+  },
+  subscriptionType: {
+    type: String,
+    enum: ['none', 'monthly', 'yearly'],
+    default: 'none'
+  },
+  blackTickExpiry: {
+    type: Date,
+    default: null
   }
 }, {
   timestamps: true

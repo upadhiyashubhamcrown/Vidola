@@ -1,6 +1,6 @@
-# 📱 Social Media App
+# 📱 Openbaux - The Social Media Platform
 
-A full-featured social media application with photo/video sharing, stories, reels, and real-time interactions.
+A full-featured social media application with photo/video sharing, stories, reels, and **Black Tick verification subscription** at ₹99/month or ₹999/year.
 
 ## ✨ Features
 
@@ -31,6 +31,14 @@ A full-featured social media application with photo/video sharing, stories, reel
 - Live notifications
 - Real-time likes and comments
 - Socket.io integration
+
+### 💎 Black Tick Subscription
+- **Monthly**: ₹99/month for verified badge
+- **Yearly**: ₹999/year (2 months FREE!)
+- Exclusive black tick verification
+- Ad-free experience
+- Priority support
+- Advanced analytics
 
 ### 🎨 Modern UI/UX
 - React Native with Expo
@@ -305,19 +313,31 @@ For support and questions:
 - Create an issue on GitHub
 - Email: support@socialmediaapp.com
 
+## 📊 Revenue Model
+
+### 💰 Subscription Revenue
+- **₹99/month** × users = Monthly revenue
+- **₹999/year** × users = Yearly revenue
+- **Example**: 1,000 users = ₹99,000/month potential
+
+### 📈 Growth Projections
+- **Month 1-3**: 0-500 users (₹0-49,500/month)
+- **Month 4-6**: 500-2,000 users (₹49,500-198,000/month)
+- **Month 7-12**: 2,000-10,000 users (₹198,000-990,000/month)
+
 ## 🔮 Roadmap
 
-### Version 1.1
+### Version 1.1 - Revenue Features
+- [ ] Affiliate program
+- [ ] Brand partnerships
+- [ ] Premium content
+- [ ] Sponsored posts
+
+### Version 1.2 - Advanced Features
 - [ ] Direct messaging
 - [ ] Live streaming
-- [ ] Advanced filters
-- [ ] Push notifications
-
-### Version 1.2
 - [ ] Group posts
 - [ ] Events system
-- [ ] Marketplace
-- [ ] Advanced analytics
 
 ## 🏆 Credits
 
@@ -325,4 +345,12 @@ Built with ❤️ using modern web and mobile technologies.
 
 ---
 
-**Ready to build the next big social media platform? Let's go! 🚀**
+**Ready to launch Openbaux and start earning with Black Tick subscriptions? Let's go! 🚀💰**
+
+---
+
+## 🎯 **Status Update**: 
+✅ **Backend Complete** (100%)  
+🔧 **Web App in Progress** (Building this week)  
+📱 **Mobile App** (Next phase)  
+💰 **Revenue Ready** (₹99/₹999 subscriptions)

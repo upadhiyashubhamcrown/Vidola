@@ -15,6 +15,7 @@ const postRoutes = require('./routes/posts');
 const storyRoutes = require('./routes/stories');
 const reelRoutes = require('./routes/reels');
 const uploadRoutes = require('./routes/upload');
+const subscriptionRoutes = require('./routes/subscription');
 
 const app = express();
 const server = http.createServer(app);
@@ -37,6 +38,7 @@ app.use('/api/posts', postRoutes);
 app.use('/api/stories', storyRoutes);
 app.use('/api/reels', reelRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/subscription', subscriptionRoutes);
 
 // Socket.io for real-time features
 io.on('connection', (socket) => {

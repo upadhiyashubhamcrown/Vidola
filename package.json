@@ -1,17 +1,17 @@
 {
-  "name": "social-media-app",
+  "name": "openbaux",
   "version": "1.0.0",
-  "description": "Full-fledged social media app with signup, login, photo/video upload, reels and stories",
+  "description": "Openbaux - The Social Media Platform with Black Tick Verification",
   "main": "server/index.js",
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "dev": "concurrently \"npm run server\" \"npm run web\"",
     "server": "cd server && npm run dev",
-    "client": "cd client && npm start",
-    "build": "cd client && npm run build",
-    "install-all": "npm install && cd server && npm install && cd ../client && npm install"
+    "web": "cd web && npm start",
+    "build": "cd web && npm run build",
+    "install-all": "npm install && cd server && npm install && cd ../web && npm install"
   },
-  "keywords": ["social media", "react", "node.js", "express", "mongodb"],
-  "author": "Social Media App",
+  "keywords": ["openbaux", "social media", "black tick", "verification", "react", "node.js", "express", "mongodb"],
+  "author": "Openbaux Team",
   "license": "MIT",
   "devDependencies": {
     "concurrently": "^7.6.0"
